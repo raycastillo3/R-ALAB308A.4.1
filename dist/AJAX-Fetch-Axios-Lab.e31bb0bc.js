@@ -12241,6 +12241,7 @@ exports.CanceledError = CanceledError;
 exports.AxiosError = AxiosError;
 exports.Axios = Axios;
 },{"./lib/axios.js":"node_modules/axios/lib/axios.js"}],"index.js":[function(require,module,exports) {
+var define;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12266,7 +12267,7 @@ var progressBar = document.getElementById("progressBar");
 var getFavouritesBtn = document.getElementById("getFavouritesBtn");
 
 // Step 0: Store your API key here for reference and easy access.
-var API_KEY = "live_5wCPPcfn8n2hfqIZL2Hg9Yth01Ik8eamTZNo5EgUgPyau2jeGikmWy4j0SzEPPFX";
+// const API_KEY;
 
 // make the select starts at 0/ adding placeholder:
 var placeholder = document.createElement("option");
@@ -12356,7 +12357,7 @@ breedSelect.addEventListener("change", /*#__PURE__*/_asyncToGenerator(/*#__PURE_
         breedId = breedSelect.value;
         console.log(breedId);
         _context.next = 5;
-        return fetch("https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=".concat(breedId, "&api_key=").concat(API_KEY));
+        return fetch("https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=".concat(breedId, "&api_key=").concat("live_5wCPPcfn8n2hfqIZL2Hg9Yth01Ik8eamTZNo5EgUgPyau2jeGikmWy4j0SzEPPFX"));
       case 5:
         response = _context.sent;
         _context.next = 8;
@@ -12509,7 +12510,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58972" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59538" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

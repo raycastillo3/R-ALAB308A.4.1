@@ -12,8 +12,7 @@ const progressBar = document.getElementById("progressBar");
 const getFavouritesBtn = document.getElementById("getFavouritesBtn");
 
 // Step 0: Store your API key here for reference and easy access.
-const API_KEY =
-  "live_5wCPPcfn8n2hfqIZL2Hg9Yth01Ik8eamTZNo5EgUgPyau2jeGikmWy4j0SzEPPFX";
+// const API_KEY;
 
 // make the select starts at 0/ adding placeholder:
 const placeholder = document.createElement("option");
@@ -75,7 +74,7 @@ breedSelect.addEventListener("change", async() => {
     const breedId = breedSelect.value;
     console.log(breedId)
     const response = await fetch(
-      `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breedId}&api_key=${API_KEY}`
+      `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breedId}&api_key=${process.env.API_KEY}`
     );
     const jsonData = await response.json();
     console.log(jsonData)

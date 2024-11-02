@@ -34,7 +34,7 @@ async function initialLoad() {
   try {
     const response = await fetch("https://api.thecatapi.com/v1/breeds");
     const jsonData = await response.json();
-    // console.log(jsonData);
+    console.log(jsonData);
     for (let i = 0; i < jsonData.length; i++) {
       const name = jsonData[i].name;
       const id = jsonData[i].id;
@@ -46,7 +46,7 @@ async function initialLoad() {
     //   breedSelect.addEventListener("change", handleBreedSelect);
     }
   } catch (err) {
-    console.log(err);
+    console.info(err);
   }
 }
 initialLoad();
@@ -77,7 +77,7 @@ breedSelect.addEventListener("change", async() => {
       `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breedId}&api_key=${process.env.API_KEY}`
     );
     const jsonData = await response.json();
-    console.log(jsonData)
+    // console.log(jsonData)
     Carousel.clear()
     for (let i = 0; i < jsonData.length; i++) {
       //creating a carouse-Item
@@ -96,27 +96,28 @@ breedSelect.addEventListener("change", async() => {
         const createCaraousel = Carousel.createCarouselItem(url, alt, catId);
         Carousel.appendCarousel(createCaraousel);
         // console.log(jsonData[i]);
-        Carousel.start();
+      }
+    } catch (err) {
+      console.info(err);
     }
-} catch (err) {
-    console.log(err);
-}
-//   const response = await fetch("https://api.thecatapi.com/v1/breeds");
-//   const jsonData = await response.json();
-//   const catIDresult = jsonData.find((cat) => cat.id === catId);
-//   console.log(catIDresult);
+    Carousel.start();
+    try {
+      const response = await fetch("https://api.thecatapi.com/v1/breeds");
+      const jsonData = await response.json();
+      const catDescription = jsonData.find((catObj) => catObj.id === breedSelect.value);
+      infoDump.innerHTML = catDescription.description;
+     
+      const infoDumpTitle = document.createElement("h3");
+      infoDumpTitle.textContent = "Description: ";
+      infoDump.prepend(infoDumpTitle);
+    } catch (err) {
+      console.info(err);
+    }
 });
-//retrieve info about the selected cat
-// const info = document.createElement("h5");
-// info.innerHTML = ``;
-// infoDump.appendChild(info);
-// newCarouselItem.appendChild(catImg);
-// newCarouselItem.appendChild(infoDump);
-//  carouselInner.removeChild(newCarouselItem);
-
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
  */
+
 /**
  * 4. Change all of your fetch() functions to axios!
  * - axios has already been imported for you within index.js.

@@ -12234,7 +12234,7 @@ function _initialLoad() {
           return response.json();
         case 6:
           jsonData = _context2.sent;
-          // console.log(jsonData);
+          console.log(jsonData);
           for (i = 0; i < jsonData.length; i++) {
             name = jsonData[i].name;
             id = jsonData[i].id;
@@ -12245,17 +12245,17 @@ function _initialLoad() {
             breedSelect.appendChild(option);
             //   breedSelect.addEventListener("change", handleBreedSelect);
           }
-          _context2.next = 13;
+          _context2.next = 14;
           break;
-        case 10:
-          _context2.prev = 10;
+        case 11:
+          _context2.prev = 11;
           _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0);
-        case 13:
+          console.info(_context2.t0);
+        case 14:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 10]]);
+    }, _callee2, null, [[0, 11]]);
   }));
   return _initialLoad.apply(this, arguments);
 }
@@ -12280,22 +12280,21 @@ initialLoad();
 // const carouselInner = document.getElementById("carouselInner");
 
 breedSelect.addEventListener("change", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var breedId, response, jsonData, i, url, catId, alt, createCaraousel;
+  var breedId, response, jsonData, i, url, catId, alt, createCaraousel, _response, _jsonData, catDescription, infoDumpTitle;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
         _context.prev = 0;
-        breedId = breedSelect.value;
-        console.log(breedId);
-        _context.next = 5;
+        breedId = breedSelect.value; // console.log(breedId)
+        _context.next = 4;
         return fetch("https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=".concat(breedId, "&api_key=").concat("live_5wCPPcfn8n2hfqIZL2Hg9Yth01Ik8eamTZNo5EgUgPyau2jeGikmWy4j0SzEPPFX"));
-      case 5:
+      case 4:
         response = _context.sent;
-        _context.next = 8;
+        _context.next = 7;
         return response.json();
-      case 8:
+      case 7:
         jsonData = _context.sent;
-        console.log(jsonData);
+        // console.log(jsonData)
         Carousel.clear();
         for (i = 0; i < jsonData.length; i++) {
           //creating a carouse-Item
@@ -12312,31 +12311,47 @@ breedSelect.addEventListener("change", /*#__PURE__*/_asyncToGenerator(/*#__PURE_
           createCaraousel = Carousel.createCarouselItem(url, alt, catId);
           Carousel.appendCarousel(createCaraousel);
           // console.log(jsonData[i]);
-          Carousel.start();
         }
-        _context.next = 17;
+        _context.next = 15;
         break;
-      case 14:
-        _context.prev = 14;
+      case 12:
+        _context.prev = 12;
         _context.t0 = _context["catch"](0);
-        console.log(_context.t0);
-      case 17:
+        console.info(_context.t0);
+      case 15:
+        Carousel.start();
+        _context.prev = 16;
+        _context.next = 19;
+        return fetch("https://api.thecatapi.com/v1/breeds");
+      case 19:
+        _response = _context.sent;
+        _context.next = 22;
+        return _response.json();
+      case 22:
+        _jsonData = _context.sent;
+        catDescription = _jsonData.find(function (catObj) {
+          return catObj.id === breedSelect.value;
+        });
+        infoDump.innerHTML = catDescription.description;
+        infoDumpTitle = document.createElement("h3");
+        infoDumpTitle.textContent = "Description: ";
+        infoDump.prepend(infoDumpTitle);
+        _context.next = 33;
+        break;
+      case 30:
+        _context.prev = 30;
+        _context.t1 = _context["catch"](16);
+        console.info(_context.t1);
+      case 33:
       case "end":
         return _context.stop();
     }
-  }, _callee, null, [[0, 14]]);
+  }, _callee, null, [[0, 12], [16, 30]]);
 })));
-//retrieve info about the selected cat
-// const info = document.createElement("h5");
-// info.innerHTML = ``;
-// infoDump.appendChild(info);
-// newCarouselItem.appendChild(catImg);
-// newCarouselItem.appendChild(infoDump);
-//  carouselInner.removeChild(newCarouselItem);
-
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
  */
+
 /**
  * 4. Change all of your fetch() functions to axios!
  * - axios has already been imported for you within index.js.
@@ -12510,7 +12525,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59538" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56267" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

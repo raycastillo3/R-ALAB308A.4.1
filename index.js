@@ -72,7 +72,7 @@ initialLoad();
 breedSelect.addEventListener("change", async() => {
   try {
     const breedId = breedSelect.value;
-    console.log(breedId)
+    // console.log(breedId)
     const response = await fetch(
       `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breedId}&api_key=${process.env.API_KEY}`
     );
